@@ -62,7 +62,7 @@ class User:
 # user = User('ana','0','test', '',[])
 # print(user.login())
 
-user = User('', '', '', '', [], user_id='1')
+# user = User('', '', '', '', [], user_id='1')
 # print(user.get_user_by_id())
 # print(user.get_users_interest())
 # print(user.get_users_groups())

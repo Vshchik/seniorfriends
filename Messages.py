@@ -29,4 +29,4 @@ class Messages():
 
 
 # create table
-DataBase.create_table(TABLE_NAME,KEYS, [{'id':'0', 'user_id':'0', 'group_id':'0', 'text':'test'}])
+# DataBase.create_table(TABLE_NAME,KEYS, [{'id':'0', 'user_id':'0', 'group_id':'0', 'text':'test'}])

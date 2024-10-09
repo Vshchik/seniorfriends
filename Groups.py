@@ -76,12 +76,12 @@ def list_to_str(listt):
     return new_string
 
 
-group = Group('Haifa', '80', ['music', ], users_id=['0', ], group_id='0')
+# group = Group('Haifa', '80', ['music', ], users_id=['0', ], group_id='0')
 # print(group.get_all_members())
 # print(group.get_all_interests())
-print(group.add_member('0'))
+#print(group.add_member('0'))
 # print(group.create_new_group())
-
+# print(group.get_messages_in_group())
 # create table
 # DataBase.create_table(TABLE_NAME,['id', 'town', 'age', 'interests', 'users_id'], [{'id':'0', 'town':'Haifa', 'age':'60','interests':['music',''], 'users_id':['1','']}])
 
