@@ -37,12 +37,24 @@ class User:
 
     def get_user_by_id(self):
         user_list = DataBase.reader_query(TABLE_NAME, 'id', self.user_id)[0]
-        user = User(user_list[1], user_list[2], user_list[3], user_list[4], user_list[5], user_id=user_list[0])
+        user = User(user_list[1], user_list[2], user_list[3], user_list[4], eval(user_list[5]), user_id=user_list[0])
         return user
+
+    def get_users_interest(self):
+        user = DataBase.reader_query(TABLE_NAME, 'id', self.user_id)
+        return eval(user[0][5])
+
+    def get_users_groups(self):
+        groups = DataBase.reader_nonquery('DataBases/GroupTable.csv')
+        users_groups = []
+        for row in groups:
+            if self.user_id in row[4]:
+                users_groups.append(row)
+        return users_groups
+
 
     def __str__(self):
         return f"Name: {self.name}, password: {self.password}, age: {self.age}, town: {self.town}"
-
 
 # create table
 # DataBase.create_table(TABLE_NAME,['id', 'name', 'age', 'password', 'town', 'interests'], [{'id':'0', 'name':'tester', 'age':'62', 'password':'test','town':'Haifa' ,'interests':['music', 'sport']}])
@@ -50,5 +62,7 @@ class User:
 # user = User('ana','0','test', '',[])
 # print(user.login())
 
-# user = User('', '', '', '', [], user_id='1')
+user = User('', '', '', '', [], user_id='1')
 # print(user.get_user_by_id())
+# print(user.get_users_interest())
+# print(user.get_users_groups())

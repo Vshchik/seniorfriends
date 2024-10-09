@@ -60,7 +60,7 @@ def writer(database_name: str, new_row: dict) -> bool:
         return False
 
 
-def change(database_name:str, new_database:list, keys):
+def change(database_name: str, new_database: list, keys):
     try:
         with open(database_name, 'w', newline='') as csv_file:
             fieldnames = keys
