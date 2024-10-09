@@ -1,6 +1,6 @@
 import DataBase
 
-TABLE_NAME = 'UserTable.csv'
+TABLE_NAME = 'DataBases/UserTable.csv'
 
 
 class User:
