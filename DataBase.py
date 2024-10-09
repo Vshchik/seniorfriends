@@ -39,9 +39,9 @@ def reader_query(database_name: str, key: str, value: str) -> list:
             keys = list_values[0]
             index = keys.index(key)
 
-            for row in list_values:
-                if row[index] == value:
-                    result_values.append(row)
+        for row in list_values:
+            if row[index] == value:
+                result_values.append(row)
 
         csv_file.close()
         return result_values
