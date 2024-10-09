@@ -1,2 +1,2 @@
-# siniorfriends
+# seniorfriends
 Friendship for elderly!
