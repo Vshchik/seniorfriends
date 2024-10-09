@@ -40,6 +40,12 @@ class User:
         user = User(user_list[1], user_list[2], user_list[3], user_list[4], eval(user_list[5]), user_id=user_list[0])
         return user
 
+    def get_user_id(self):
+        users = DataBase.reader_nonquery(TABLE_NAME)
+        for row in users:
+            if row[1] == self.name and row[3] == self.password:
+                return row[0]
+
     def get_users_interest(self):
         user = DataBase.reader_query(TABLE_NAME, 'id', self.user_id)
         return eval(user[0][5])
