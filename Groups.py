@@ -1,12 +1,12 @@
 import DataBase
-import Users
+#import Users
 
 # Groups: id, town, age, interests, [users id]
 TABLE_NAME = 'DataBases/GroupTable.csv'
 KEYS = ['id', 'town', 'age', 'interests', 'users_id']
 
 
-class Group():
+class Group:
     def __init__(self, town: str, age: str, interests: list, group_id: str = '-1', users_id: list = []):
         self.group_id = group_id
         self.town = town
@@ -61,6 +61,9 @@ class Group():
     def get_messages_in_group(self):
         messages = DataBase.reader_query('DataBases/MessageTable.csv', 'group_id', self.group_id)
         return messages
+
+
+
 
 
 def convert_list_to_dict(self):
