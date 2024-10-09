@@ -1,2 +1,2 @@
 # seniorfriends
-Friendship for elderly!
+Friendship groups for elderly!
