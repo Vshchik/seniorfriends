@@ -58,3 +58,18 @@ def writer(database_name: str, new_row: dict) -> bool:
         return True
     except:
         return False
+
+
+def change(database_name: str, new_database: list, keys):
+    try:
+        with open(database_name, 'w', newline='') as csv_file:
+            fieldnames = keys
+            table_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            table_writer.writeheader()
+            new_database.pop(0)
+            for row in new_database:
+                table_writer.writerow(row)
+        csv_file.close()
+        return True
+    except:
+        return False
