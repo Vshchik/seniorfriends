@@ -355,7 +355,7 @@ class App:
 
     def show_members(self, group_name):
         members_info = ""
-        for member in eval(groups.users_id):
+        for member in group_name.users_id:
             user = Users.User("", "", "", "", [], member)
             user = user.get_user_by_id()
             members_info += f"{user.name} (Age: {user.age})\n"
