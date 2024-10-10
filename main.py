@@ -1,6 +1,6 @@
 import Users
 import Groups
-import Users
+import Messages
 
 state = {'state': 'Login', 'user': None}
 
