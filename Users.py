@@ -124,7 +124,7 @@ class User:
         return f"Name: {self.name}, password: {self.password}, age: {self.age}, town: {self.town}"
 
 
-def get_all_users(self):
+def get_all_users():
     users = DataBase.reader_nonquery(TABLE_NAME)
     users2 = []
     for user in users:
@@ -157,4 +157,9 @@ def get_all_users(self):
 # tab1, tab2 = user.find_perfect_group()
 # print(tab1)
 # print(tab2[0].interests)
+
+if __name__ == '__main__':
+    users = get_all_users()
+    for user in users:
+        print(user)
 

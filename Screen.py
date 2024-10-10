@@ -2,9 +2,11 @@ import tkinter as tk
 from tkinter import messagebox
 import pickle
 
+import Users
+
 # Fake data storage (for demo purposes)
-users = {}
-groups = {}
+users = []
+groups = []
 
 # List of cities in Israel
 cities_in_israel = [
@@ -33,13 +35,8 @@ class App:
         self.show_login()
 
     def load_data(self):
-        # Load users from file
-        try:
-            with open('users_data.pkl', 'rb') as file:
-                global users
-                users = pickle.load(file)
-        except FileNotFoundError:
-            users = {}
+        global users
+        users = Users.get_all_users()
 
     def clear_frame(self):
         if self.frame:
