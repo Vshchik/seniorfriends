@@ -7,6 +7,7 @@ from Groups import Group
 
 # Fake data storage (for demo purposes)
 users = []
+groups = []
 
 # List of cities in Israel
 cities_in_israel = [
@@ -66,8 +67,7 @@ class App:
         password = self.login_password.get()
         user = Users.User(username, '', password,"", [])
         if user.user_exist() and user.login():
-            user.user_id = user.get_user_id()
-            self.current_user = user.get_user_by_id()
+            self.current_user = user.get_user_by_id(user.get_user_id())
             self.show_profile()
             ...
         else:

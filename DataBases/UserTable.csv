@@ -3,3 +3,4 @@ id,name,age,password,town,interests
 1,ana,82,test,Haifa,"['music', 'art', 'sports']"
 2,f,80,test,Haifa,"['music', 'art', 'sports']"
 3,a,89,test,Haifa,"['music', 'swim', 'art', 'sports']"
+4,shira,60,shira1,Ashdod,"['Music', 'Sports']"
