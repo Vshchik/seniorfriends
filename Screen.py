@@ -162,18 +162,18 @@ class App:
         self.frame = tk.Frame(self.root, padx=10, pady=10)
         self.frame.pack(padx=20, pady=20)
 
-        tk.Label(self.frame, text="Profile", font=('Arial', 18)).grid(row=0, column=1, pady=10)
+        tk.Label(self.frame, text="Profile", font=('Arial', 18)).grid(row=0, column=0, pady=5)
         # tk.Label(self.frame, text=f"Full Name: {self.current_user['full_name']}").grid(row=1, column=0, pady=5)
-        tk.Label(self.frame, text=f"Username: {self.current_user.name}").grid(row=12, column=0, pady=5)
+        tk.Label(self.frame, text=f"Username: {self.current_user.name}").grid(row=1, column=0, pady=5)
         tk.Label(self.frame, text=f"Age: {self.current_user.age}").grid(row=2, column=0, pady=5)
         # tk.Label(self.frame, text=f"Town: {self.current_user['town']}").grid(row=4, column=0, pady=5)
-        tk.Label(self.frame, text=f"Interests: {', '.join(self.current_user.interests)}").grid(row=5, column=0, pady=5)
+        tk.Label(self.frame, text=f"Interests: {', '.join(self.current_user.interests)}").grid(row=3, column=0, pady=5)
 
-        tk.Button(self.frame, text="Edit Profile", command=self.show_edit_profile).grid(row=6, column=0, pady=5)
-        tk.Button(self.frame, text="Add Groups", command=self.show_add_groups).grid(row=7, column=0, pady=5)
-        tk.Button(self.frame, text="View Groups", command=self.show_groups).grid(row=8, column=0, pady=5)
-        tk.Button(self.frame, text="Delete Account", command=self.delete_account).grid(row=9, column=0, pady=5)
-        tk.Button(self.frame, text="Exit Account", command=self.show_login).grid(row=10, column=0, pady=5)
+        # tk.Button(self.frame, text="Edit Profile", command=self.show_edit_profile).grid(row=6, column=0, pady=5)
+        tk.Button(self.frame, text="Add Groups", command=self.show_add_groups).grid(row=4, column=0, pady=5)
+        tk.Button(self.frame, text="View Groups", command=self.show_groups).grid(row=5, column=0, pady=5)
+        # tk.Button(self.frame, text="Delete Account", command=self.delete_account).grid(row=9, column=0, pady=5)
+        tk.Button(self.frame, text="Exit Account", command=self.show_login).grid(row=6, column=0, pady=5)
 
     def show_edit_profile(self):
         self.clear_frame()
