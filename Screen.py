@@ -69,6 +69,7 @@ class App:
             user.user_id = user.get_user_id()
             self.current_user = user.get_user_by_id()
             self.show_profile()
+            ...
         else:
             messagebox.showerror("Error", "Invalid credentials")
 
