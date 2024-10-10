@@ -123,7 +123,7 @@ class User:
         for user in users:
             users2.append(user)
 
-        return user2
+        return users2
 
     def __str__(self):
         return f"Name: {self.name}, password: {self.password}, age: {self.age}, town: {self.town}"
