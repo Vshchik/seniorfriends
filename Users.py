@@ -117,6 +117,13 @@ class User:
 
             return perfect_groups_exist, perfect_groups_notexist
 
+    def get_all_users(self):
+        users = DataBase.reader_nonquery(TABLE_NAME)
+        users2 = []
+        for user in users:
+            users2.append(user)
+
+        return user2
 
     def __str__(self):
         return f"Name: {self.name}, password: {self.password}, age: {self.age}, town: {self.town}"
@@ -146,4 +153,3 @@ user = user.get_user_by_id()
 tab1, tab2 = user.find_perfect_group()
 print(tab1)
 print(tab2[0].interests)
-
