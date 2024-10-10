@@ -339,8 +339,13 @@ class App:
         tk.Label(self.frame, text="Messages:").grid(row=2, column=0, pady=5)
         row = 3
 
-        for msg in groups[group_name]['messages']:
-            tk.Label(self.frame, text=f"{msg['name']}: {msg['text']}").grid(row=row, column=0, pady=5)
+        global group_messages
+        group_messages = group_name.get_messages_in_group()
+
+        for msg in group_messages:
+            user = Users.User('',"", '', "", [], user_id=msg[1])
+            user = user.get_user_by_id()
+            tk.Label(self.frame, text=f"{user.name}: {msg[3]}").grid(row=row, column=0, pady=5)
             row += 1
 
         self.message_text = tk.Entry(self.frame)
