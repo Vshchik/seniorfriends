@@ -317,6 +317,7 @@ class App:
         row = 1
         for group_name in groups:
             group = Group(group_name[1], group_name[2], group_name[3], group_id=group_name[0])
+
             if group.check_member_in_group(self.current_user.user_id):
                 group_temp = [group_name[1], eval(group_name[3])[0]]
                 tk.Button(self.frame, text=group_temp, command=lambda name=group: self.show_group(name)).grid(row=row, column=0, pady=5)
@@ -324,12 +325,12 @@ class App:
 
         tk.Button(self.frame, text="Back", command=self.show_profile).grid(row=row, column=1, pady=5)
 
-    def show_group(self, group_name):
+    def show_group(self, group_name: Group):
         self.clear_frame()
         self.frame = tk.Frame(self.root, padx=10, pady=10)
         self.frame.pack(padx=20, pady=20)
 
-        tk.Label(self.frame, text=f"Group: {group_name}", font=('Arial', 18)).grid(row=0, column=1, pady=10)
+        tk.Label(self.frame, text=f"{group_name.town} {eval(group_name.interests)[0]}", font=('Arial', 18)).grid(row=0, column=0, pady=5)
 
         tk.Button(self.frame, text="Members", command=lambda: self.show_members(group_name)).grid(row=1, column=0, pady=5)
 
