@@ -307,16 +307,20 @@ class App:
             messagebox.showerror("Error", "Please select a valid group")
 
     def show_groups(self):
+        global groups
         self.clear_frame()
         self.frame = tk.Frame(self.root, padx=10, pady=10)
         self.frame.pack(padx=20, pady=20)
 
-        tk.Label(self.frame, text="Your Groups", font=('Arial', 18)).grid(row=0, column=1, pady=10)
+        tk.Label(self.frame, text="Your Groups", font=('Arial', 18)).grid(row=0, column=0, pady=5)
 
         row = 1
-        for group_name in self.current_user['groups']:
-            tk.Button(self.frame, text=group_name, command=lambda name=group_name: self.show_group(name)).grid(row=row, column=0, pady=5)
-            row += 1
+        for group_name in groups:
+            group = Group(group_name[1], group_name[2], group_name[3], group_id=group_name[0])
+            if group.check_member_in_group(self.current_user.user_id):
+                group_temp = [group_name[1], eval(group_name[3])[0]]
+                tk.Button(self.frame, text=group_temp, command=lambda name=group: self.show_group(name)).grid(row=row, column=0, pady=5)
+                row += 1
 
         tk.Button(self.frame, text="Back", command=self.show_profile).grid(row=row, column=1, pady=5)
 
