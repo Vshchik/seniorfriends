@@ -5,8 +5,8 @@ import pickle
 import Users
 from Groups import Group
 
-
 users = []
+filtered_groups = []
 
 # List of cities in Israel
 cities_in_israel = [
@@ -256,6 +256,7 @@ class App:
         self.show_login()
 
     def show_add_groups(self):
+        global filtered_groups
         self.clear_frame()
         self.frame = tk.Frame(self.root, padx=10, pady=10)
         self.frame.pack(padx=20, pady=20)
@@ -263,10 +264,9 @@ class App:
         tk.Label(self.frame, text="Add Groups", font=('Arial', 18)).grid(row=0, column=1, pady=10)
         tk.Label(self.frame, text="Choose Group:").grid(row=1, column=0, pady=5)
 
-        filtered_groups = []
         for group in groups:
-            if self.current_user.town == group[1] and any(hobby in eval(group[3][0]) for hobby in self.current_user.interests):
-                filtered_groups.append(group)
+            if self.current_user.town == group[1] and any(hobby in eval(group[3]) for hobby in self.current_user.interests):
+                filtered_groups.append([group[1], eval(group[3])[0]])
 
         self.selected_group = tk.StringVar(self.frame)
         self.selected_group.set("__Choose Group__")  # Default value
@@ -277,24 +277,30 @@ class App:
 
     def join_group(self):
         group_name = self.selected_group.get()
-        if group_name in groups:
-            if self.current_user['username'] not in [member['username'] for member in groups[group_name]['members']]:
-                groups[group_name]['members'].append({
-                    'full_name': self.current_user['full_name'],
-                    'age': self.current_user['age'],
-                    'username': self.current_user['username']
-                })
-                self.current_user['groups'].append(group_name)  # Add group to user's list
+        group_name = list(eval(group_name))
+        if group_name in filtered_groups:
+            group = Group(group_name[0], "0", group_name[1])
+            group.group_id = group.get_group_id()
+            members = group.get_all_members()
+            is_in = False
+            if members:
+                for member in members:
+                    if self.current_user.name == member[1]:
+                        is_in = True
 
-                # Save users to file
-                with open('users_data.pkl', 'wb') as file:
-                    pickle.dump(users, file)
+            if not is_in:
+                group.add_member(self.current_user.user_id)
+                groups.append(group.group_to_list()) # Add group to user's list
 
-                # Save groups data
-                with open('groups_data.pkl', 'wb') as file:
-                    pickle.dump(groups, file)
+                # # Save users to file
+                # with open('users_data.pkl', 'wb') as file:
+                #     pickle.dump(users, file)
+                #
+                # # Save groups data
+                # with open('groups_data.pkl', 'wb') as file:
+                #     pickle.dump(groups, file)
 
-                messagebox.showinfo("Success", f"You have joined {group_name}")
+                messagebox.showinfo("Success", f"You have joined {group_name[0]} {group_name[1]}")
             else:
                 messagebox.showerror("Error", "You are already a member of this group")
         else:

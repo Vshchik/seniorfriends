@@ -1,7 +1,7 @@
 id,name,age,password,town,interests
-0,tester,72,test,Haifa,"['music', 'sports', 'art']"
-1,ana,82,test,Haifa,"['music', 'art', 'sports']"
-2,f,80,test,Haifa,"['music', 'art', 'sports']"
-3,a,89,test,Haifa,"['music', 'swim', 'art', 'sports']"
+0,tester,72,test,Haifa,"['Music', 'Sports']"
+1,ana,82,test,Haifa,"['Music', 'Sports']"
+2,f,80,test,Haifa,"['Music', 'Sports']"
+3,a,89,test,Haifa,"['Music', 'Sports']"
 4,shira,60,shira1,Ashdod,"['Music', 'Sports']"
 5,shirr,60,shira1,Haifa,"['Walking', 'Chess']"

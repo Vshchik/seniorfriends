@@ -1,4 +1,7 @@
+from tokenize import group
+
 import DataBase
+
 #import Users
 
 # Groups: id, town, age, interests, [users id]
@@ -36,6 +39,8 @@ class Group:
             for index, row in enumerate(groups):
                 if row[0] == self.group_id:
                     groups[index][4] = eval(row[4])
+                    if not groups[index][4]:
+                        groups[index][4] = new_member_id
                     groups[index][4].append(new_member_id)
 
                 new_table.append(convert_list_to_dict(row))
@@ -52,7 +57,10 @@ class Group:
 
     def get_all_members(self):
         group = DataBase.reader_query(TABLE_NAME, 'id', self.group_id)
-        return eval(group[0][4])
+        if group:
+            return eval(group[0][4])
+        else:
+            return []
 
     def get_all_interests(self):
         group = DataBase.reader_query(TABLE_NAME, 'id', self.group_id)
@@ -74,6 +82,21 @@ class Group:
         return group
 
 
+    def get_group_id(self):
+        groups = DataBase.reader_query(TABLE_NAME, 'town', self.town)
+        for group in groups:
+            if eval(group[3])[0] == self.interests:
+                return group[0]
+        return 0
+
+    def group_to_list(self):
+        group_list = []
+        group_list.append(self.group_id)
+        group_list.append(self.town)
+        group_list.append(self.age)
+        group_list.append(self.interests)
+        group_list.append(self.users_id)
+        return group_list
 
 def convert_list_to_dict(self):
     group_dict = {'id': self[0], 'town': self[1], 'age': self[2], 'interests': self[3],
