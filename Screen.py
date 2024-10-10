@@ -148,6 +148,7 @@ class App:
 
     def show_add_groups(self):
         global filtered_groups
+        filtered_groups = []
         self.clear_frame()
         self.frame = tk.Frame(self.root, padx=10, pady=10)
         self.frame.pack(padx=20, pady=20)
@@ -156,6 +157,7 @@ class App:
         tk.Label(self.frame, text="Choose Group:").grid(row=1, column=0, pady=5)
 
         for group in groups:
+            group[3] = str(group[3])
             if self.current_user.town == group[1] and any(hobby in eval(group[3]) for hobby in self.current_user.interests):
                 filtered_groups.append([group[1], eval(group[3])[0]])
 
@@ -181,7 +183,11 @@ class App:
 
             if not is_in:
                 group.add_member(self.current_user.user_id)
-                groups.append(group.group_to_list())
+                global groups
+                for index, thing in enumerate(groups):
+                    if thing[0] == group.group_id:
+                        groups[index][4] = eval(groups[index][4])
+                        groups[index][4].append(self.current_user.user_id)
 
                 messagebox.showinfo("Success", f"You have joined {group_name[0]} {group_name[1]}")
             else:
@@ -203,9 +209,9 @@ class App:
             group.users_id = group.get_all_members()
 
             if group.check_member_in_group(self.current_user.user_id):
-                if not type(group_name[3]) is list:
+                if not type(group_name[3]) is list and not type(group_name[3]) is str:
                     group_name[3] = eval(group_name[3])
-                group_temp = [group_name[1], group_name[3]]
+                group_temp = [group_name[1], eval(group_name[3])[0]]
                 tk.Button(self.frame, text=group_temp, command=lambda name=group: self.show_group(name)).grid(row=row, column=0, pady=5)
                 row += 1
 
@@ -216,7 +222,7 @@ class App:
         self.frame = tk.Frame(self.root, padx=10, pady=10)
         self.frame.pack(padx=20, pady=20)
 
-        tk.Label(self.frame, text=f"{group_name.town} {group_name.interests[0]}", font=('Arial', 18)).grid(row=0, column=0, pady=5)
+        tk.Label(self.frame, text=f"{group_name.town} {eval(group_name.interests)[0]}", font=('Arial', 18)).grid(row=0, column=0, pady=5)
 
         tk.Button(self.frame, text="Members", command=lambda: self.show_members(group_name)).grid(row=1, column=0, pady=5)
 

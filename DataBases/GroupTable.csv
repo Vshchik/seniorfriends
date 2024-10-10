@@ -21,7 +21,7 @@ id,town,age,interests,users_id
 24,Haifa,0,['Gardening'],[]
 25,Haifa,0,['Cooking'],[]
 26,Haifa,0,['Music'],"['1', '0', '2']"
-27,Haifa,0,['Sports'],[]
+27,Haifa,0,['Sports'],['1']
 28,Haifa,0,['Traveling'],[]
 29,Beersheba,0,['Reading'],[]
 30,Beersheba,0,['Walking'],[]
