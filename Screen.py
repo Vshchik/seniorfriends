@@ -318,12 +318,11 @@ class App:
 
         row = 1
         for group_name in groups:
+            print(group_name)
             group = Group(group_name[1], group_name[2], group_name[3], group_id=group_name[0])
             group.users_id = group.get_all_members()
 
             if group.check_member_in_group(self.current_user.user_id):
-                if not type(group_name[3]) is list:
-                    group_name[3] = eval(group_name[3])
                 group_temp = [group_name[1], group_name[3]]
                 tk.Button(self.frame, text=group_temp, command=lambda name=group: self.show_group(name)).grid(row=row, column=0, pady=5)
                 row += 1
