@@ -67,9 +67,9 @@ class App:
         password = self.login_password.get()
         user = Users.User(username, '', password,"", [])
         if user.user_exist() and user.login():
-            self.current_user = user.get_user_by_id(user.get_user_id())
+            user = user.get_user_id()
+            self.current_user = user.get_user_by_id()
             self.show_profile()
-            ...
         else:
             messagebox.showerror("Error", "Invalid credentials")
 
