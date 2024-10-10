@@ -37,7 +37,7 @@ id,town,age,interests,users_id
 40,Ashdod,0,['Gardening'],[]
 41,Ashdod,0,['Cooking'],[]
 42,Ashdod,0,['Music'],['4']
-43,Ashdod,0,['Sports'],[]
+43,Ashdod,0,['Sports'],['4']
 44,Ashdod,0,['Traveling'],[]
 45,Netanya,0,['Reading'],[]
 46,Netanya,0,['Walking'],[]
