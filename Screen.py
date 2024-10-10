@@ -158,10 +158,10 @@ class App:
         self.frame.pack(padx=20, pady=20)
 
         tk.Label(self.frame, text="Profile", font=('Arial', 18)).grid(row=0, column=1, pady=10)
-        tk.Label(self.frame, text=f"Full Name: {self.current_user['full_name']}").grid(row=1, column=0, pady=5)
-        tk.Label(self.frame, text=f"Username: {self.current_user['username']}").grid(row=2, column=0, pady=5)
-        tk.Label(self.frame, text=f"Age: {self.current_user['age']}").grid(row=3, column=0, pady=5)
-        tk.Label(self.frame, text=f"Town: {self.current_user['town']}").grid(row=4, column=0, pady=5)
+        # tk.Label(self.frame, text=f"Full Name: {self.current_user['full_name']}").grid(row=1, column=0, pady=5)
+        tk.Label(self.frame, text=f"Username: {self.current_user['username']}").grid(row=12, column=0, pady=5)
+        tk.Label(self.frame, text=f"Age: {self.current_user['age']}").grid(row=2, column=0, pady=5)
+        # tk.Label(self.frame, text=f"Town: {self.current_user['town']}").grid(row=4, column=0, pady=5)
         tk.Label(self.frame, text=f"Interests: {', '.join(self.current_user['interests'])}").grid(row=5, column=0, pady=5)
 
         tk.Button(self.frame, text="Edit Profile", command=self.show_edit_profile).grid(row=6, column=0, pady=5)
@@ -176,17 +176,17 @@ class App:
         self.frame.pack(padx=20, pady=20)
 
         tk.Label(self.frame, text="Edit Profile", font=('Arial', 18)).grid(row=0, column=1, pady=10)
-        tk.Label(self.frame, text="Full Name:").grid(row=1, column=0, sticky="e", pady=5)
-        tk.Label(self.frame, text="Password:").grid(row=2, column=0, sticky="e", pady=5)
-        tk.Label(self.frame, text="Confirm Password:").grid(row=3, column=0, sticky="e", pady=5)
-        tk.Label(self.frame, text="Age:").grid(row=4, column=0, sticky="e", pady=5)
-        tk.Label(self.frame, text="Town:").grid(row=5, column=0, sticky="e", pady=5)
+        # tk.Label(self.frame, text="Full Name:").grid(row=1, column=0, sticky="e", pady=5)
+        tk.Label(self.frame, text="Password:").grid(row=1, column=0, sticky="e", pady=5)
+        # tk.Label(self.frame, text="Confirm Password:").grid(row=3, column=0, sticky="e", pady=5)
+        tk.Label(self.frame, text="Age:").grid(row=3, column=0, sticky="e", pady=5)
+        tk.Label(self.frame, text="Town:").grid(row=4, column=0, sticky="e", pady=5)
 
-        self.edit_full_name = tk.Entry(self.frame)
-        self.edit_full_name.insert(0, self.current_user['full_name'])
+        # self.edit_full_name = tk.Entry(self.frame)
+        # self.edit_full_name.insert(0, self.current_user['full_name'])
 
         self.edit_password = tk.Entry(self.frame, show="*")
-        self.edit_confirm_password = tk.Entry(self.frame, show="*")
+        # self.edit_confirm_password = tk.Entry(self.frame, show="*")
 
         self.edit_age = tk.StringVar(self.frame)
         self.edit_age.set(self.current_user['age'])
@@ -206,16 +206,16 @@ class App:
             chk.grid(sticky="w")
             self.edit_selected_hobbies.append((hobby, var))
 
-        self.edit_full_name.grid(row=1, column=1)
-        self.edit_password.grid(row=2, column=1)
-        self.edit_confirm_password.grid(row=3, column=1)
+        # self.edit_full_name.grid(row=1, column=1)
+        self.edit_password.grid(row=1, column=1)
+        # self.edit_confirm_password.grid(row=3, column=1)
         tk.Button(self.frame, text="Save Changes", command=self.save_profile_changes).grid(row=7, column=1, pady=5)
         tk.Button(self.frame, text="Back", command=self.show_profile).grid(row=8, column=1, pady=5)
 
     def save_profile_changes(self):
-        new_full_name = self.edit_full_name.get()
+        # new_full_name = self.edit_full_name.get()
         new_password = self.edit_password.get()
-        confirm_password = self.edit_confirm_password.get()
+        # confirm_password = self.edit_confirm_password.get()
         new_age = self.edit_age.get()
         new_town = self.edit_town.get()
         new_interests = []
@@ -224,11 +224,11 @@ class App:
             if var.get():
                 new_interests.append(hobby)
 
-        if new_password and new_password != confirm_password:
-            messagebox.showerror("Error", "Passwords do not match")
-            return
+        # if new_password and new_password != confirm_password:
+        #     messagebox.showerror("Error", "Passwords do not match")
+        #     return
 
-        self.current_user['full_name'] = new_full_name
+        # self.current_user['full_name'] = new_full_name
         if new_password:
             self.current_user['password'] = new_password
         self.current_user['age'] = new_age
