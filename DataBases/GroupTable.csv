@@ -17,7 +17,7 @@ id,town,age,interests,users_id
 20,Jerusalem,0,['Traveling'],[]
 21,Haifa,0,['Reading'],[]
 22,Haifa,0,['Walking'],[]
-23,Haifa,0,['Chess'],[]
+23,Haifa,0,['Chess'],['6']
 24,Haifa,0,['Gardening'],[]
 25,Haifa,0,['Cooking'],[]
 26,Haifa,0,['Music'],"['1', '0', '2']"
