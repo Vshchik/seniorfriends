@@ -26,6 +26,12 @@ class Messages():
         else:
             return False
 
+    def message_to_list(self):
+        message_list = []
+        message_list.append(self.mess_id)
+        message_list.append(self.user_id)
+        message_list.append(self.group_id)
+        return message_list
 
 # create table
 # DataBase.create_table(TABLE_NAME,KEYS, [{'id':'0', 'user_id':'0', 'group_id':'0', 'text':'test'}])

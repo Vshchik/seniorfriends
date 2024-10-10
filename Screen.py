@@ -4,6 +4,7 @@ import pickle
 
 import Users
 from Groups import Group
+from Messages import Messages
 
 users = []
 filtered_groups = []
@@ -363,11 +364,17 @@ class App:
         messagebox.showinfo("Group Members", members_info)
 
     def send_message(self, group_name):
+        global group_messages
         msg_text = self.message_text.get()
         if msg_text:
-            groups[group_name]['messages'].append({'name': self.current_user['full_name'], 'text': msg_text})
+            message = Messages(self.current_user.user_id, group_name.group_id, msg_text)
+            message.create_message()
+            message = message.message_to_list()
+            group_messages.append(message)
+            # groups[group_name]['messages'].append({'name': self.current_user['full_name'], 'text': msg_text})
             self.message_text.delete(0, tk.END)
             self.show_group(group_name)
+
             # Save groups data
             with open('groups_data.pkl', 'wb') as file:
                 pickle.dump(groups, file)
