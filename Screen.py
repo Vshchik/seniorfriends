@@ -5,17 +5,14 @@ import pickle
 import Users
 from Groups import Group
 
-# Fake data storage (for demo purposes)
 users = []
-groups = []
+# groups = []
 
-# List of cities in Israel
 cities_in_israel = [
     "Tel Aviv", "Jerusalem", "Haifa", "Beersheba", "Ashdod", "Netanya", "Holon", "Bat Yam",
     "Petah Tikva", "Rishon LeZion", "Eilat", "Herzliya"
 ]
 
-# List of hobbies/interests
 hobbies = ["Reading", "Walking", "Chess", "Gardening", "Cooking", "Music", "Sports", "Traveling"]
 
 # Create groups dynamically based on cities and hobbies
@@ -23,6 +20,7 @@ for city in cities_in_israel:
     global groups
     group = Group('', '', [])
     groups = group.get_all_groups()
+
 
 
 
@@ -78,18 +76,18 @@ class App:
         self.frame.pack(padx=20, pady=20)
 
         tk.Label(self.frame, text="Register", font=('Arial', 18)).grid(row=0, column=1, pady=10)
-        tk.Label(self.frame, text="Full Name:").grid(row=1, column=0, sticky="e", pady=5)
+        # tk.Label(self.frame, text="Full Name:").grid(row=1, column=0, sticky="e", pady=5)
         tk.Label(self.frame, text="Username:").grid(row=2, column=0, sticky="e", pady=5)
         tk.Label(self.frame, text="Password:").grid(row=3, column=0, sticky="e", pady=5)
-        tk.Label(self.frame, text="Confirm Password:").grid(row=4, column=0, sticky="e", pady=5)
+        # tk.Label(self.frame, text="Confirm Password:").grid(row=4, column=0, sticky="e", pady=5)
         tk.Label(self.frame, text="Age:").grid(row=5, column=0, sticky="e", pady=5)
         tk.Label(self.frame, text="Town:").grid(row=6, column=0, sticky="e", pady=5)
         tk.Label(self.frame, text="Interests:").grid(row=7, column=0, sticky="e", pady=5)
 
-        self.reg_full_name = tk.Entry(self.frame)
+        # self.reg_full_name = tk.Entry(self.frame)
         self.reg_username = tk.Entry(self.frame)
         self.reg_password = tk.Entry(self.frame, show="*")
-        self.reg_confirm_password = tk.Entry(self.frame, show="*")
+        # self.reg_confirm_password = tk.Entry(self.frame, show="*")
         self.reg_age = tk.StringVar(self.frame)
         age_options = [str(age) for age in range(60, 100)] + ["100+"]
 
@@ -97,10 +95,10 @@ class App:
         age_menu = tk.OptionMenu(self.frame, self.reg_age, *age_options)
         age_menu.grid(row=5, column=1)
 
-        self.reg_full_name.grid(row=1, column=1)
+        # self.reg_full_name.grid(row=1, column=1)
         self.reg_username.grid(row=2, column=1)
         self.reg_password.grid(row=3, column=1)
-        self.reg_confirm_password.grid(row=4, column=1)
+        # self.reg_confirm_password.grid(row=4, column=1)
 
         # Drop-down menu for selecting a town
         self.selected_town = tk.StringVar(self.frame)
@@ -119,10 +117,10 @@ class App:
         tk.Button(self.frame, text="Back", command=self.show_login).grid(column=1)
 
     def register_user(self):
-        full_name = self.reg_full_name.get()
+        # full_name = self.reg_full_name.get()
         username = self.reg_username.get()
         password = self.reg_password.get()
-        confirm_password = self.reg_confirm_password.get()
+        # confirm_password = self.reg_confirm_password.get()
         age = self.reg_age.get()
         town = self.selected_town.get()
         interests = []
@@ -133,22 +131,26 @@ class App:
 
         if username in users:
             messagebox.showerror("Error", "Username already exists")
-        elif password != confirm_password:
-            messagebox.showerror("Error", "Passwords do not match")
-        else:
-            users[username] = {
-                'full_name': full_name,
-                'username': username,
-                'password': password,
-                'age': age,
-                'town': town,
-                'interests': interests,
-                'groups': []  # Initialize user's groups
-            }
-            # Save users to file
-            with open('users_data.pkl', 'wb') as file:
-                pickle.dump(users, file)
 
+        # elif password != confirm_password:
+        #     messagebox.showerror("Error", "Passwords do not match")
+        else:
+            user = Users.User(username, age, password, town, interests)
+            # users[username] = {
+            #     'full_name': full_name,
+            #     'username': username,
+            #     'password': password,
+            #     'age': age,
+            #     'town': town,
+            #     'interests': interests,
+            #     'groups': []  # Initialize user's groups
+            # }
+            # # Save users to file
+            # with open('users_data.pkl', 'wb') as file:
+            #     pickle.dump(users, file)
+            user.add_new_user()
+            user = user.user_dict_to_list()
+            users.append(user)
             messagebox.showinfo("Success", "Registration successful")
             self.show_login()
 
