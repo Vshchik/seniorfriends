@@ -22,6 +22,7 @@ for city in cities_in_israel:
     global groups
     group = Group('', '', [])
     groups = group.get_all_groups()
+    groups.pop(0)
 
 
 
@@ -263,9 +264,9 @@ class App:
         tk.Label(self.frame, text="Choose Group:").grid(row=1, column=0, pady=5)
 
         filtered_groups = []
-        for group_name in groups.keys():
-            if self.current_user['town'] in group_name and any(hobby in group_name for hobby in self.current_user['interests']):
-                filtered_groups.append(group_name)
+        for group in groups:
+            if self.current_user.town == group[1] and any(hobby in eval(group[3][0]) for hobby in self.current_user.interests):
+                filtered_groups.append(group)
 
         self.selected_group = tk.StringVar(self.frame)
         self.selected_group.set("__Choose Group__")  # Default value
