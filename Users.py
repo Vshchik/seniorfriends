@@ -117,8 +117,21 @@ class User:
 
             return perfect_groups_exist, perfect_groups_notexist
 
+    def user_exist(self):
+        users = DataBase.reader_query(TABLE_NAME, 'name', self.name)
+        if len(users) > 0: return True
+        else: return False
 
 
+    def user_dict_to_list(self):
+        user_list = []
+        user_list.append(self.user_id)
+        user_list.append(self.name)
+        user_list.append(self.age)
+        user_list.append(self.password)
+        user_list.append(self.town)
+        user_list.append(self.interests)
+        return user_list
 
     def __str__(self):
         return f"Name: {self.name}, password: {self.password}, age: {self.age}, town: {self.town}"
