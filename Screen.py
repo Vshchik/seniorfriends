@@ -20,11 +20,9 @@ hobbies = ["Reading", "Walking", "Chess", "Gardening", "Cooking", "Music", "Spor
 
 # Create groups dynamically based on cities and hobbies
 for city in cities_in_israel:
-    for hobby in hobbies:
-        group = Group(city, '0', [hobby])
-        group.create_new_group()
-        group.group_id = group.get_group_by_id()
-        groups.append(group)
+    global groups
+    group = Group('', '', [])
+    groups = group.get_all_groups()
 
 
 

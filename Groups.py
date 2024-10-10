@@ -66,6 +66,13 @@ class Group:
         group = DataBase.reader_query(TABLE_NAME, 'interests', str(self.interests))
         return group[0][0]
 
+    def get_all_groups(self):
+        groups = DataBase.reader_nonquery(TABLE_NAME)
+        group = []
+        for gropp in groups:
+            group.append(gropp)
+        return group
+
 
 
 def convert_list_to_dict(self):
