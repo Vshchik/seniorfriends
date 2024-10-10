@@ -285,7 +285,7 @@ class App:
             is_in = False
             if members:
                 for member in members:
-                    if self.current_user.name == member[1]:
+                    if self.current_user.user_id == member:
                         is_in = True
 
             if not is_in:

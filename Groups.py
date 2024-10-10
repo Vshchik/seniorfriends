@@ -40,8 +40,9 @@ class Group:
                 if row[0] == self.group_id:
                     groups[index][4] = eval(row[4])
                     if not groups[index][4]:
-                        groups[index][4] = new_member_id
-                    groups[index][4].append(new_member_id)
+                        groups[index][4] = [new_member_id]
+                    else:
+                        groups[index][4].append(new_member_id)
 
                 new_table.append(convert_list_to_dict(row))
             return DataBase.change(TABLE_NAME, new_table, KEYS)
