@@ -62,7 +62,9 @@ class Group:
         messages = DataBase.reader_query('DataBases/MessageTable.csv', 'group_id', self.group_id)
         return messages
 
-
+    def get_group_by_id(self):
+        group = DataBase.reader_query(TABLE_NAME, 'interests', str(self.interests))
+        return group[0][0]
 
 
 

@@ -3,6 +3,7 @@ from tkinter import messagebox
 import pickle
 
 import Users
+from Groups import Group
 
 # Fake data storage (for demo purposes)
 users = []
@@ -20,8 +21,12 @@ hobbies = ["Reading", "Walking", "Chess", "Gardening", "Cooking", "Music", "Spor
 # Create groups dynamically based on cities and hobbies
 for city in cities_in_israel:
     for hobby in hobbies:
-        group_name = f"{city} {hobby}"
-        groups[group_name] = {'members': [], 'messages': []}
+        group = Group(city, '0', [hobby])
+        group.create_new_group()
+        group.group_id = group.get_group_by_id()
+        groups.append(group)
+
+
 
 # Main Application
 class App:
