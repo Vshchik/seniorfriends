@@ -129,7 +129,7 @@ def get_all_users(self):
     users2 = []
     for user in users:
         users2.append(user)
-
+    users2.pop(0)
     return users2
 
 
