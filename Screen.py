@@ -7,6 +7,7 @@ from Groups import Group
 
 users = []
 filtered_groups = []
+group_messages = []
 
 # List of cities in Israel
 cities_in_israel = [
@@ -348,8 +349,10 @@ class App:
 
     def show_members(self, group_name):
         members_info = ""
-        for member in groups[group_name]['members']:
-            members_info += f"{member['full_name']} (Age: {member['age']})\n"
+        for member in eval(groups.users_id):
+            user = Users.User("", "", "", "", [], member)
+            user = user.get_user_by_id()
+            members_info += f"{user.name} (Age: {user.age})\n"
         messagebox.showinfo("Group Members", members_info)
 
     def send_message(self, group_name):
